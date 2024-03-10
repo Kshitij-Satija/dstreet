@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- font-family: "Playfair Display",serif;-->
+    <style>
+
+        body{
+            margin: 0;
+            font-family: "Inria Sans",sans-serif;
+            background: url(./bgBSE.png);
+            height: 100vh;
+            color: #FFF9E2;
+        }
+
+        #container{
+            margin: 0;
+            background-color:#0f132bf5;
+            height: 100vh;
+        }
+
+        input,p,select,input{
+            margin: 0;
+        }
+
+        #navBar{
+            background-color: #0f132bee;
+            display: flex;
+            flex-flow: row nowrap;
+            padding: 12px 36px;
+            justify-content: space-between;
+            margin-bottom: 65px;
+        }
+
+        #logo{
+            text-align:center;
+            padding:0;
+        }
+
+        .logoText{
+            font-family: "Playfair Display",serif;
+            font-size: 32px;
+        }
+        .tagText{
+            font-weight: 100;
+            font-size: 12px;
+        }
+
+        #menu{
+            display: flex;
+            flex-direction: row;
+            background-color: #f5f5f5;
+            color: #404040;
+            font-weight: 400;
+            height: auto;
+            border-radius: 2px;
+        }
+        
+        .menuItems{
+            padding: 6px 12px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .menubtn{
+            border-left: 1px solid #404040;
+            cursor: pointer;
+        }
+
+        .menubtn:hover{
+            background-color: #FFEA98;
+        }
+
+        #navHead{
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
+            gap: 2px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .borderLine{
+            width: 60%;
+            height: 6px;
+            border-radius: 1px;
+            background: rgb(255,209,118);
+            background: linear-gradient(90deg, rgba(255,209,118,1) 0%, rgba(236,255,117,1) 100%, rgba(0,212,255,1) 100%);
+        }
+
+        .navHeadText{
+            font-size: 32px ;
+        }
+
+        .topPart{
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 12px;
+            justify-content: space-between;
+        }
+
+        .inputLabel{
+            font-size: 24px;
+        }
+
+        select,input{
+            font-size: 14px;
+            background-color: #FFF9E2;
+            padding: 12px;
+            border-radius: 4px;
+            width: 60%;
+        }
+
+        input{
+            text-align: right;
+        }
+
+        .inputBox{
+            margin: 12px;
+        }
+
+        #formBox{
+            width: 50%;
+            margin-left:12px;
+        }
+
+        .amount{
+            font-size: 24px;
+            text-align: center;
+            padding:6px 0px ;
+        }
+
+      
+        button{
+            background-color: #f59904;
+            color: #FFF9E2;
+            padding: 8px 16px;
+            outline: none;
+            border: none;
+            font-size: 14px;
+            text-align:center;
+            border-radius: 2px;
+        } 
+        
+        button:focus{
+            border:1px solid white;
+        }
+
+        #footer{
+            text-align: center;
+            padding: 12px;
+            background-color: #00ff0846;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #bodyContainer{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #bnblogoBox img{
+            width: 210px;
+            display: flex;
+        }
+
+        #bnblogoBox{
+            align-self: center;
+            justify-content: center;
+            margin-right: 20%;
+        }
+
+        #resetMarket{
+           background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="navBar">
+            <div id="logo">
+                <p class="logoText">DALAL STREET</p>
+                <p class="tagText">Experience the legacy, Trade the future</p>
+            </div>
+            <div id="menu">
+                <p class="menuItems">Stock Update</p>
+
+            </div>
+            <div id="navHead">
+                <p class="navHeadText">ADMIN</p>
+                <div class="borderLine"></div>
+            </div>
+        </div>
+    <div id="bodyContainer">
+        <div id="formBox">
+        <div class="inputBox">
+            <div class="topPart">
+                <p class="inputLabel">Stock ID</p>
+                <select id="DDstockID">
+                    <option>Select Stock</option>
+                    <option>Stock 1</option>
+                    <option>Stock 2</option>
+                    <option>Stock 3</option>
+                    <option>Stock 4</option>
+                    <option>Stock 5</option>
+                    <option>Stock 6</option>
+                    <option>Stock 7</option>
+                    <option>Stock 8</option>
+                    <option>Stock 9</option>
+                    <option>Stock 10</option>
+                </select>
+            </div>
+        </div>
+        <div class="inputBox">
+            <div class="topPart">
+                <p class="inputLabel">Price</p>
+                <input type="number" id="INnewStockQuantity" />
+            </div>
+        </div>
+        <div class="inputBox">
+            <div class="topPart">
+                <p class="inputLabel">Quantity</p>
+                <input type="number" id="INPrice" />
+            </div>
+        </div>   
+        <div class="inputBox">
+            <div class="topPart">
+                <p class="specialText amount" id="currbalance"></p>
+                <button id="updateQty">Update Stock</button>
+            </div>
+        </div>
+        
+
+        </div>
+        <div id="bnblogoBox">
+            <img src="./bnbLogo.png" />
+        </div>
+    </div>
+        </div>
+        <div id="footer">
+            <p class="message">All Rights Reserved. Bulls and Bears - The Finance Club Of VIT</p>
+        </div>
+        <script type="module">
+
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
+            import { getDatabase,ref,set,onValue} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+            
+            //const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
+
+            
+                const firebaseConfig = {
+                    apiKey: "AIzaSyDlQT6hMcXN8XVk-daqu8E-U1wCE5w17IA",
+                    authDomain: "bnb-yantra-6c2c0.firebaseapp.com",
+                    databaseURL: "https://bnb-yantra-6c2c0-default-rtdb.asia-southeast1.firebasedatabase.app",
+                    projectId: "bnb-yantra-6c2c0",
+                    storageBucket: "bnb-yantra-6c2c0.appspot.com",
+                    messagingSenderId: "716033360959",
+                    appId: "1:716033360959:web:0c685c186dead8603ae48a",
+                    measurementId: "G-7NP3JJRHPG"
+                };
+            
+                const app = initializeApp(firebaseConfig);
+                const analytics = getAnalytics(app);
+                const database = getDatabase(app);
+
+                let stockDD = document.getElementById('DDstockID');
+                let newPrice = document.getElementById('INPrice');
+                let newQty = document.getElementById('INnewStockQuantity');
+
+                newPrice.value = 0;
+                newQty.value = 0;
+
+                let newPriceVal = 0;
+                let newQtyVal = 0;
+
+                function reset(){
+                    stockDD.value = stockDD.options[0].value;
+                    newPrice.value = 0;
+                    newQty.value = 0;
+                    newPriceVal = 0;
+                    newQtyVal = 0;
+                }
+
+                newPrice.addEventListener('input',()=>{
+                    newPriceVal = newPrice.value;
+                    if(newPriceVal == "") newPriceVal = 0;
+                    else{
+                        newPriceVal = parseFloat(newPriceVal.value) || 0;
+                        if(newPriceVal<0) {newPriceVal = 0; newQty = 0;}
+                    }
+                });
+
+                newQty.addEventListener('input',()=>{
+                    newQtyVal = newQty.value;
+                    if(newQtyVal == "") newQtyVal = 0;
+                    else{
+                        newQtyVal = parseFloat(newQty.value) || 0;
+                        if(newQtyVal<0) {newQtyVal = 0; newBalanceVal = 0;}
+                    }
+                });
+
+
+
+                
+
+                updateQty.addEventListener('click',()=>{
+                    let userValue = userDD.value;
+                    let stockValue = stockDD.value;
+                    if(stockValue == 'Select Stock'){
+                        alert("All Fields Not Selected");
+                    }else{ 
+                        let passcode = prompt("Please Enter Access Code");
+                        if(passcode === "shittu"){
+                            let UserDataRef = ref(database,'UserData/'+userValue+'/'+stockValue);
+                            set(UserDataRef,newQtyVal);
+                            alert("Stock Quantity Updated Successfully");
+                            reset();
+                        }else{
+                            alert("Access Denied");
+                        }
+                    }
+                });
+
+                
+            
+
+           
+        </script>
+</body>
+</html>

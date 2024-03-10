@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- font-family: "Playfair Display",serif;-->
+    <style>
+
+        body{
+            margin: 0;
+            font-family: "Inria Sans",sans-serif;
+            background: url(./bgBSE.png);
+            height: 100vh;
+            color: #FFF9E2;
+        }
+
+        #container{
+            margin: 0;
+            background-color:#0f132bf5;
+            height: 100vh;
+        }
+
+        input,p,select,input{
+            margin: 0;
+        }
+
+        #navBar{
+            background-color: #0f132bee;
+            display: flex;
+            flex-flow: row nowrap;
+            padding: 12px 36px;
+            justify-content: space-between;
+            margin-bottom: 135px;
+        }
+
+        #logo{
+            text-align:center;
+            padding:0;
+        }
+
+        .logoText{
+            font-family: "Playfair Display",serif;
+            font-size: 32px;
+        }
+        .tagText{
+            font-weight: 100;
+            font-size: 12px;
+        }
+
+        #menu{
+            display: flex;
+            flex-direction: row;
+            background-color: #f5f5f5;
+            color: #404040;
+            font-weight: 400;
+            height: auto;
+            border-radius: 2px;
+        }
+        
+        .menuItems{
+            padding: 6px 12px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .menubtn{
+            border-left: 1px solid #404040;
+            cursor: pointer;
+        }
+
+        .menubtn:hover{
+            background-color: #FFEA98;
+        }
+
+        #navHead{
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
+            gap: 2px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .borderLine{
+            width: 60%;
+            height: 6px;
+            border-radius: 1px;
+            background: rgb(255,209,118);
+            background: linear-gradient(90deg, rgba(255,209,118,1) 0%, rgba(236,255,117,1) 100%, rgba(0,212,255,1) 100%);
+        }
+
+        .navHeadText{
+            font-size: 32px ;
+        }
+
+        .topPart{
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 12px;
+            justify-content: space-between;
+        }
+
+        .inputLabel{
+            font-size: 24px;
+        }
+
+        select,input{
+            font-size: 14px;
+            background-color: #FFF9E2;
+            padding: 12px;
+            border-radius: 4px;
+            width: 50%;
+        }
+
+        .inputBox{
+            margin: 12px;
+        }
+
+        #formBox{
+            width: 40%;
+            margin-left:12px;
+        }
+
+        #amount{
+            font-size: 24px;
+            text-align: center;
+            padding: 6px;
+        }
+
+        #message{
+            display: none;
+            text-align: center;
+            font-size: 21px;
+            color: #404040;
+            padding: 6px;
+            margin-top: 6px;
+        }
+
+        .amount{
+            background-color: #f59904;
+            color: #FFF9E2;
+            padding: 8px 16px;
+            outline: none;
+            border: none;
+            font-size: 14px;
+            text-align:center;
+            border-radius: 2px;
+        }   
+
+        #footer{
+            text-align: center;
+            padding: 12px;
+            background-color: #00ff0846;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #bodyContainer{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #bnblogoBox img{
+            width: 210px;
+            display: flex;
+        }
+
+        #bnblogoBox{
+            align-self: center;
+            justify-content: center;
+            margin-right: 30%;
+        }
+
+        button:focus{
+            border:1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="navBar">
+            <div id="logo">
+                <p class="logoText">DALAL STREET</p>
+                <p class="tagText">Experience the legacy, Trade the future</p>
+            </div>
+            <div id="navHead">
+                <p class="navHeadText">LOGIN</p>
+                <div class="borderLine"></div>
+            </div>
+        </div>
+    <div id="bodyContainer">
+        <div id="formBox">
+            <p class="specialText" id="message">Success Message</p>
+       
+        <div class="inputBox">
+            <div class="topPart">
+                <p class="inputLabel">Username: </p>
+                <input type="text" id="unameIN" autocomplete="off" />
+            </div>
+        </div>
+
+        <div class="inputBox">
+            <div class="topPart">
+                <p class="inputLabel">Password: </p>
+                <input type="text" id="passwordIN" autocomplete="off" />
+            </div>
+        </div>
+
+        <div class="inputBox">
+            <div class="topPart">
+                <p class="specialText" id="amount"></p>
+                <button class="amount" id="loginButton">Login</button>
+            </div>
+        </div>
+        </div>
+        <div id="bnblogoBox">
+            <img src="./bnbLogo.png" />
+        </div>
+    </div>
+        </div>
+        <div id="footer">
+            <p class="message">All Rights Reserved. Bulls and Bears - The Finance Club Of VIT</p>
+        </div>
+        <script type="module">
+            document.getElementById('loginButton').addEventListener('click',()=>{
+                let unameValue = document.getElementById('unameIN').value;
+                let passwordValue = document.getElementById('passwordIN').value;
+
+                if(unameValue == "ABC" && passwordValue == "BDS"){
+                    sessionStorage.setItem('valueTransactorNBVHklefjd',true);
+                    window.location.href = "index.html";
+                }else{
+                    alert("Incorrect Credentials");
+                    sessionStorage.setItem('valueTransactorNBVHklefjd',false);
+                }
+            });
+        </script>
+</body>
+</html>
