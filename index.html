@@ -318,7 +318,7 @@
                     return new Promise((resolve, reject) => {
                         onValue(stockRef, (snapshot) => {
                             const stockData = snapshot.val();
-                            const lastPrice = stockData.Price;
+                            const lastPrice = stockData.price;
                             const volume = stockData.iss_vol;
                 
                             // Calculate the new price based on the formula
