@@ -368,6 +368,7 @@
                             let priceEntered = parseFloat(newPrice.value) || 0;
                             
                             updatePrices(stockValue, quantityEntered, priceEntered);
+                            reset();
                         } else {
                             alert("Access Denied");
                         }
