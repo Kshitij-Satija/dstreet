@@ -331,27 +331,30 @@
                     let stockRef = ref(database, 'stocks/' + stockValue);
                 
                     // Fetch current price and volume from the database
-                    onValue(stockRef, (snapshot) => {
-                        const data = snapshot.val();
-                        const currentPrice = data.price;
-                        const volume = data.iss_volume;
-                
-                        // Calculate new price using the formula
-                        const priceEnteredByUser = parseFloat(newPrice.value) || 0;
-                        const quantityFromUser = parseFloat(newQty.value) || 0;
-                        const newPriceValue = currentPrice + (quantityFromUser / volume) * (currentPrice - priceEnteredByUser);
-                
-                        // Update the price and last_price fields in the database
-                        set(stockRef.child('price'), newPriceValue);
-                        set(stockRef.child('last_price'), data.price 
-                        ).then(() => {
-                            alert("Price and Volume updated successfully");
-                            reset(); // Reset input fields
-                        }).catch((error) => {
-                            console.error("Error updating price and volume: ", error);
-                            alert("Failed to update price and volume. Please try again later.");
-                        });
-                    });
+                    // Update the event listener for the stockRef
+onValue(stockRef, (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+        const currentPrice = data.price;
+        const volume = data.iss_volume;
+
+        // Calculate new price using the formula
+        const priceEnteredByUser = parseFloat(newPrice.value) || 0;
+        const quantityFromUser = parseFloat(newQty.value) || 0;
+        const newPriceValue = currentPrice + (quantityFromUser / volume) * (currentPrice - priceEnteredByUser);
+
+        // Update the price and last_price fields in the database
+        set(stockRef.child('price'), newPriceValue);
+        set(stockRef.child('last_price'), currentPrice); // Update last_price with the current price
+
+        alert("Price and Volume updated successfully");
+        reset(); // Reset input fields
+    } else {
+        console.error("Data is null or undefined.");
+        alert("Failed to update price and volume. Please try again later.");
+    }
+});
+
                 }
                 }else{
                 window.location.href ="login.html"
