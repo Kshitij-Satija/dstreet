@@ -258,7 +258,9 @@
             import { getDatabase,ref,set,onValue} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
             
             //const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
-            
+            const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
+
+            if(isAuthenticated == "true"){
                 const firebaseConfig = {
                     apiKey: "AIzaSyDlQT6hMcXN8XVk-daqu8E-U1wCE5w17IA",
                     authDomain: "bnb-yantra-6c2c0.firebaseapp.com",
@@ -314,26 +316,45 @@
 
                 
 
-                updateQty.addEventListener('click', () => {
-                    let stockValue = stockDD.value;
-                    if (stockValue === 'Select Stock') {
-                        alert("All Fields Not Selected");
-                    } else {
-                        let passcode = prompt("Please Enter Access Code");
-                        if (passcode === "shittu") {
-                            let stockPriceRef = ref(database, 'stocks/'+'stocks/' + stockValue + '/price'); // Adjusted path to stock price
-                            set(stockPriceRef, newPriceVal).then(() => { // Update only the price value
-                                alert("Stock Price Updated Successfully");
-                                reset();
+                // Function to update last_price and price in database
+                function updatePrices(stockValue, quantityEntered, priceEntered) {
+                    // Fetch price and volume from the database
+                    const stockRef = ref(database, 'stocks/' + stockValue);
+                    onValue(stockRef, (snapshot) => {
+                        const stockData = snapshot.val();
+                        if (stockData) {
+                            const priceFromDB = stockData.price;
+                            const volumeFromDB = stockData.iss_volume;
+
+                            // Calculate new price using the provided formula
+                            const newPrice = priceFromDB + (quantityEntered / volumeFromDB) * (priceEntered - priceFromDB);
+
+                            // Update the "last_price" in the database with the current price
+                            const lastPriceRef = ref(database, 'stocks/' + stockValue + '/last_price');
+                            set(lastPriceRef, priceFromDB).then(() => {
+                                // Update the "price" in the database with the calculated new price
+                                const priceRef = ref(database, 'stocks/' + stockValue + '/price');
+                                set(priceRef, newPrice).then(() => {
+                                    alert("Prices Updated Successfully");
+                                }).catch((error) => {
+                                    console.error("Error updating price: ", error);
+                                    alert("Failed to update price. Please try again later.");
+                                });
                             }).catch((error) => {
-                                console.error("Error updating stock price: ", error);
-                                alert("Failed to update stock price. Please try again later.");
+                                console.error("Error updating last price: ", error);
+                                alert("Failed to update last price. Please try again later.");
                             });
                         } else {
-                            alert("Access Denied");
+                            alert("Stock data not found in the database");
                         }
-                    }
-                });
+                    });
+                }
+            }else{
+                window.location.href ="login.html"
+            }
+
+
+
                 
         
 
