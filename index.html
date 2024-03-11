@@ -321,7 +321,7 @@
                     } else {
                         let passcode = prompt("Please Enter Access Code");
                         if (passcode === "shittu") {
-                            let stockPriceRef = ref(database, 'stocks/' + stockValue + '/Price'); // Adjusted path to stock price
+                            let stockPriceRef = ref(database, 'stocks/stocks/' + stockValue + '/Price'); // Adjusted path to stock price
                             set(stockPriceRef, newPriceVal).then(() => { // Update only the price value
                                 alert("Stock Price Updated Successfully");
                                 reset();
