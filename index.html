@@ -313,21 +313,47 @@
 
 
                 
-
+                function fetchPriceAndUpdate(stockName, qtyEntered) {
+                    let stockRef = ref(database, 'stocks/' + stockName);
+                    return new Promise((resolve, reject) => {
+                        onValue(stockRef, (snapshot) => {
+                            const stockData = snapshot.val();
+                            const lastPrice = stockData.Price;
+                            const volume = stockData.iss_vol;
+                
+                            // Calculate the new price based on the formula
+                            let newPrice = lastPrice + (qtyEntered / volume) * (price - lastPrice);
+                
+                            // Update the last_price with the new price
+                            let lastPriceRef = ref(database, 'stocks/' + stockName + '/last_price');
+                            set(lastPriceRef, newPrice).then(() => {
+                                resolve(newPrice); // Resolve with the calculated new price
+                            }).catch((error) => {
+                                reject(error);
+                            });
+                        }, (error) => {
+                            reject(error);
+                        });
+                    });
+                }
+                
+                // Fetch the price and update last_price in the database
                 updateQty.addEventListener('click', () => {
                     let stockValue = stockDD.value;
-                    if (stockValue === 'Select Stock') {
-                        alert("All Fields Not Selected");
+                    let qtyEntered = parseFloat(newQty.value) || 0; // Parse the entered quantity
+                    let price = parseFloat(newPrice.value) || 0; // Parse the entered price
+                
+                    if (stockValue === 'Select Stock' || qtyEntered <= 0 || price <= 0) {
+                        alert("Invalid input. Please fill all fields with valid values.");
                     } else {
                         let passcode = prompt("Please Enter Access Code");
                         if (passcode === "shittu") {
-                            let stockPriceRef = ref(database, 'stocks/' + stockValue + '/Price'); // Adjusted path to stock price
-                            set(stockPriceRef, newPriceVal).then(() => { // Update only the price value
-                                alert("Stock Price Updated Successfully");
+                            fetchPriceAndUpdate(stockValue, qtyEntered).then((newPrice) => {
+                                alert("New Price Updated Successfully with calculated price: " + newPrice);
                                 reset();
                             }).catch((error) => {
-                                console.error("Error updating stock price: ", error);
-                                alert("Failed to update stock price. Please try again later.");
+                                console.error("Error updating new price: ", error);
+                                alert("Failed to update new price. Please try again later.");
                             });
                         } else {
                             alert("Access Denied");
