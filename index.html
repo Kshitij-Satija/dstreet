@@ -224,13 +224,13 @@
         </div>
         <div class="inputBox">
             <div class="topPart">
-                <p class="inputLabel">Quantity</p>
+                <p class="inputLabel">Price</p>
                 <input type="number" id="INnewStockQuantity" />
             </div>
         </div>
         <div class="inputBox">
             <div class="topPart">
-                <p class="inputLabel">Price</p>
+                <p class="inputLabel">Quantity</p>
                 <input type="number" id="INPrice" />
             </div>
         </div>   
@@ -257,9 +257,8 @@
             import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
             import { getDatabase,ref,set,onValue} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
             
-            const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
+            //const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
             
-            if(isAuthenticated == "true"){
                 const firebaseConfig = {
                     apiKey: "AIzaSyDlQT6hMcXN8XVk-daqu8E-U1wCE5w17IA",
                     authDomain: "bnb-yantra-6c2c0.firebaseapp.com",
@@ -314,52 +313,27 @@
 
 
                 
-                function updatePriceAndVolume() {
+
+                updateQty.addEventListener('click', () => {
                     let stockValue = stockDD.value;
                     if (stockValue === 'Select Stock') {
                         alert("All Fields Not Selected");
-                        return;
+                    } else {
+                        let passcode = prompt("Please Enter Access Code");
+                        if (passcode === "shittu") {
+                            let stockPriceRef = ref(database, 'stocks/' + stockValue + '/Price'); // Adjusted path to stock price
+                            set(stockPriceRef, newPriceVal).then(() => { // Update only the price value
+                                alert("Stock Price Updated Successfully");
+                                reset();
+                            }).catch((error) => {
+                                console.error("Error updating stock price: ", error);
+                                alert("Failed to update stock price. Please try again later.");
+                            });
+                        } else {
+                            alert("Access Denied");
+                        }
                     }
-                
-                    let passcode = prompt("Please Enter Access Code");
-                    if (passcode !== "shittu") {
-                        alert("Access Denied");
-                        return;
-                    }
-                
-                    // Reference to the stock document
-                    let stockRef = ref(database, 'stocks/' + stockValue);
-                
-                    // Fetch current price and volume from the database
-                    // Update the event listener for the stockRef
-onValue(stockRef, (snapshot) => {
-    const data = snapshot.val();
-    if (data) {
-        const currentPrice = data.price;
-        const volume = data.iss_volume;
-
-        // Calculate new price using the formula
-        const priceEnteredByUser = parseFloat(newPrice.value) || 0;
-        const quantityFromUser = parseFloat(newQty.value) || 0;
-        const newPriceValue = currentPrice + (quantityFromUser / volume) * (currentPrice - priceEnteredByUser);
-
-        // Update the price and last_price fields in the database
-        set(stockRef.child('price'), newPriceValue);
-        set(stockRef.child('last_price'), currentPrice); // Update last_price with the current price
-
-        alert("Price and Volume updated successfully");
-        reset(); // Reset input fields
-    } else {
-        console.error("Data is null or undefined.");
-        alert("Failed to update price and volume. Please try again later.");
-    }
-});
-
-                }
-                }else{
-                window.location.href ="login.html"
-            }
-
+                });
                 
         
 
