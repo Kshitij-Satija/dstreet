@@ -198,7 +198,7 @@
 
             </div>
             <div id="navHead">
-                <p class="navHeadText">ADMIN</p>
+                <p class="navHeadText">STOCK UPDATE</p>
                 <div class="borderLine"></div>
             </div>
         </div>
@@ -258,7 +258,9 @@
             import { getDatabase,ref,set,onValue} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
             
             //const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
+            const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
 
+            if(isAuthenticated == "true")
             
                 const firebaseConfig = {
                     apiKey: "AIzaSyDlQT6hMcXN8XVk-daqu8E-U1wCE5w17IA",
@@ -332,6 +334,9 @@
                         }
                     }
                 });
+            }else{
+                window.location.href ="login.html"
+            }
 
                 
             
