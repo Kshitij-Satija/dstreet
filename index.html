@@ -333,6 +333,7 @@
                                 set(priceRef, newPrice).then(() => {
                                     alert("Prices Updated Successfully");
                                     reset();
+                                    off(listener);
                                 }).catch((error) => {
                                     console.error("Error updating price: ", error);
                                     alert("Failed to update price. Please try again later.");
