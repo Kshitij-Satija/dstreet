@@ -336,16 +336,20 @@
                                 const priceRef = ref(database, 'stocks/' + stockValue + '/price');
                                 set(priceRef, newPrice).then(() => {
                                     alert("Prices Updated Successfully");
+                                    reset();
                                 }).catch((error) => {
                                     console.error("Error updating price: ", error);
                                     alert("Failed to update price. Please try again later.");
+                                    reset();
                                 });
                             }).catch((error) => {
                                 console.error("Error updating last price: ", error);
                                 alert("Failed to update last price. Please try again later.");
+                                reset();
                             });
                         } else {
                             alert("Stock data not found in the database");
+                            reset();
                         }
                     });
                 }
