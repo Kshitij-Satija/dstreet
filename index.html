@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <!-- font-family: "Playfair Display",serif;-->
     <style>
-
         body{
             margin: 0;
             font-family: "Inria Sans",sans-serif;
@@ -257,18 +256,19 @@
             import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
             import { getDatabase,ref,set,onValue} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
             
+            //const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
             const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
 
             if(isAuthenticated == "true"){
                 const firebaseConfig = {
-                    apiKey: "AIzaSyDlQT6hMcXN8XVk-daqu8E-U1wCE5w17IA",
-                    authDomain: "bnb-yantra-6c2c0.firebaseapp.com",
-                    databaseURL: "https://bnb-yantra-6c2c0-default-rtdb.asia-southeast1.firebasedatabase.app",
-                    projectId: "bnb-yantra-6c2c0",
-                    storageBucket: "bnb-yantra-6c2c0.appspot.com",
-                    messagingSenderId: "716033360959",
-                    appId: "1:716033360959:web:0c685c186dead8603ae48a",
-                    measurementId: "G-7NP3JJRHPG"
+                    apiKey: "YOUR_API_KEY",
+                    authDomain: "YOUR_AUTH_DOMAIN",
+                    databaseURL: "YOUR_DATABASE_URL",
+                    projectId: "YOUR_PROJECT_ID",
+                    storageBucket: "YOUR_STORAGE_BUCKET",
+                    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+                    appId: "YOUR_APP_ID",
+                    measurementId: "YOUR_MEASUREMENT_ID"
                 };
             
                 const app = initializeApp(firebaseConfig);
@@ -310,6 +310,7 @@
                         if(newQtyVal<0) {newQtyVal = 0;}
                     }
                 });
+
 
                 // Function to update last_price and price in database
                 function updatePrices(stockValue, quantityEntered, priceEntered) {
@@ -367,10 +368,9 @@
                     }
                 });
                 
-            }else{
-                window.location.href ="login.html"
+            } else {
+                window.location.href ="login.html";
             }
-
         </script>
 </body>
 </html>
