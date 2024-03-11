@@ -342,10 +342,9 @@
                         const newPriceValue = currentPrice + (quantityFromUser / volume) * (currentPrice - priceEnteredByUser);
                 
                         // Update the price and last_price fields in the database
-                        set(stockRef, {
-                            price: newPriceValue,
-                            last_price: currentPrice // Update last_price with the current price
-                        }).then(() => {
+                        set(stockRef.child('price'), newPriceValue);
+                        set(stockRef.child('last_price'), data.price 
+                        ).then(() => {
                             alert("Price and Volume updated successfully");
                             reset(); // Reset input fields
                         }).catch((error) => {
