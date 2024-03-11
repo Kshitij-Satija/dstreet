@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final</title>
+    <title>Stock Update</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -247,7 +247,7 @@
             <img src="./bnbLogo.png" />
         </div>
     </div>
-        </div>
+    </div>
         <div id="footer">
             <p class="message">All Rights Reserved. Bulls and Bears - The Finance Club Of VIT</p>
         </div>
@@ -261,7 +261,7 @@
             const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
 
             if(isAuthenticated == "true")
-            
+                {
                 const firebaseConfig = {
                     apiKey: "AIzaSyDlQT6hMcXN8XVk-daqu8E-U1wCE5w17IA",
                     authDomain: "bnb-yantra-6c2c0.firebaseapp.com",
@@ -299,7 +299,7 @@
                     newPriceVal = newPrice.value;
                     if(newPriceVal == "") newPriceVal = 0;
                     else{
-                        newPriceVal = parseFloat(newPriceVal.value) || 0;
+                        newPriceVal = parseFloat(newPrice.value) || 0;
                         if(newPriceVal<0) {newPriceVal = 0; newQty = 0;}
                     }
                 });
@@ -309,7 +309,7 @@
                     if(newQtyVal == "") newQtyVal = 0;
                     else{
                         newQtyVal = parseFloat(newQty.value) || 0;
-                        if(newQtyVal<0) {newQtyVal = 0; newBalanceVal = 0;}
+                        if(newQtyVal<0) {newQtyVal = 0;}
                     }
                 });
 
@@ -318,16 +318,16 @@
                 
 
                 updateQty.addEventListener('click',()=>{
-                    let userValue = userDD.value;
+                    let newpricevalueset=newPriceVal;
                     let stockValue = stockDD.value;
                     if(stockValue == 'Select Stock'){
                         alert("All Fields Not Selected");
                     }else{ 
                         let passcode = prompt("Please Enter Access Code");
                         if(passcode === "shittu"){
-                            let UserDataRef = ref(database,'UserData/'+userValue+'/'+stockValue);
-                            set(UserDataRef,newQtyVal);
-                            alert("Stock Quantity Updated Successfully");
+                            let stockref = ref(database,'stocks/stocks/'+stockValue+'/'+'price');
+                            set(stockref,newpricevalueset);
+                            alert("Stock Updated Successfully");
                             reset();
                         }else{
                             alert("Access Denied");
