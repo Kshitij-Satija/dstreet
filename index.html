@@ -257,7 +257,6 @@
             import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
             import { getDatabase,ref,set,onValue} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
             
-            //const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
             const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
 
             if(isAuthenticated == "true"){
@@ -312,10 +311,6 @@
                     }
                 });
 
-
-
-                
-
                 // Function to update last_price and price in database
                 function updatePrices(stockValue, quantityEntered, priceEntered) {
                     // Fetch price and volume from the database
@@ -353,7 +348,9 @@
                         }
                     });
                 }
-                updateQty.addEventListener('click', () => {
+
+                let updateQtyButton = document.getElementById('updateQty');
+                updateQtyButton.addEventListener('click', () => {
                     let stockValue = stockDD.value;
                     if (stockValue === 'Select Stock') {
                         alert("All Fields Not Selected");
@@ -364,8 +361,6 @@
                             let priceEntered = parseFloat(newPrice.value) || 0;
                             
                             updatePrices(stockValue, quantityEntered, priceEntered);
-                            
-                            reset();
                         } else {
                             alert("Access Denied");
                         }
@@ -376,15 +371,6 @@
                 window.location.href ="login.html"
             }
 
-
-
-                
-        
-
-                
-            
-
-           
         </script>
 </body>
 </html>
