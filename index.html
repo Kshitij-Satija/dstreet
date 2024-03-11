@@ -224,13 +224,13 @@
         </div>
         <div class="inputBox">
             <div class="topPart">
-                <p class="inputLabel">Price</p>
+                <p class="inputLabel">Quantity</p>
                 <input type="number" id="INnewStockQuantity" />
             </div>
         </div>
         <div class="inputBox">
             <div class="topPart">
-                <p class="inputLabel">Quantity</p>
+                <p class="inputLabel">Price</p>
                 <input type="number" id="INPrice" />
             </div>
         </div>   
@@ -321,7 +321,7 @@
                     } else {
                         let passcode = prompt("Please Enter Access Code");
                         if (passcode === "shittu") {
-                            let stockPriceRef = ref(database, 'stocks/'+'stocks/' + stockValue + '/price'); // Adjusted path to stock price
+                            let stockPriceRef = ref(database, 'stocks/' + stockValue + '/price'); // Adjusted path to stock price
                             set(stockPriceRef, newPriceVal).then(() => { // Update only the price value
                                 alert("Stock Price Updated Successfully");
                                 reset();
