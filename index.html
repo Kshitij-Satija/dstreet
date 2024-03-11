@@ -316,15 +316,15 @@
                 function updatePrices(stockValue, quantityEntered, priceEntered) {
                     // Fetch price and volume from the database
                     const stockRef = ref(database, 'stocks/' + stockValue);
-                    onValue(stockRef, (snapshot) => {
+                    const listener = onValue(stockRef, (snapshot) => {
                         const stockData = snapshot.val();
                         if (stockData) {
                             const priceFromDB = stockData.price;
                             const volumeFromDB = stockData.iss_volume;
-
+                
                             // Calculate new price using the provided formula
                             const newPrice = priceFromDB + (quantityEntered / volumeFromDB) * (priceEntered - priceFromDB);
-
+                
                             // Update the "last_price" in the database with the current price
                             const lastPriceRef = ref(database, 'stocks/' + stockValue + '/last_price');
                             set(lastPriceRef, priceFromDB).then(() => {
@@ -333,11 +333,13 @@
                                 set(priceRef, newPrice).then(() => {
                                     alert("Prices Updated Successfully");
                                     reset();
-                                    off(listener);
                                 }).catch((error) => {
                                     console.error("Error updating price: ", error);
                                     alert("Failed to update price. Please try again later.");
                                     reset();
+                                }).finally(() => {
+                                    // Remove the listener after updating prices
+                                    off(listener);
                                 });
                             }).catch((error) => {
                                 console.error("Error updating last price: ", error);
@@ -347,9 +349,12 @@
                         } else {
                             alert("Stock data not found in the database");
                             reset();
+                            // Remove the listener if stock data is not found
+                            off(listener);
                         }
                     });
                 }
+                
 
                 let updateQtyButton = document.getElementById('updateQty');
                 updateQtyButton.addEventListener('click', () => {
