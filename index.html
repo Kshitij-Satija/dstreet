@@ -258,10 +258,7 @@
             import { getDatabase,ref,set,onValue} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
             
             //const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
-            const isAuthenticated = sessionStorage.getItem('valueTransactorNBVHklefjd');
-
-            if(isAuthenticated == "true")
-                {
+            
                 const firebaseConfig = {
                     apiKey: "AIzaSyDlQT6hMcXN8XVk-daqu8E-U1wCE5w17IA",
                     authDomain: "bnb-yantra-6c2c0.firebaseapp.com",
@@ -317,26 +314,27 @@
 
                 
 
-                updateQty.addEventListener('click',()=>{
-                    let newpricevalueset=newPriceVal;
+                updateQty.addEventListener('click', () => {
                     let stockValue = stockDD.value;
-                    if(stockValue == 'Select Stock'){
+                    if (stockValue === 'Select Stock') {
                         alert("All Fields Not Selected");
-                    }else{ 
+                    } else {
                         let passcode = prompt("Please Enter Access Code");
-                        if(passcode === "shittu"){
-                            let stockref = ref(database,'stocks/stocks/'+stockValue+'/'+'price');
-                            set(stockref,newpricevalueset);
-                            alert("Stock Updated Successfully");
-                            reset();
-                        }else{
+                        if (passcode === "shittu") {
+                            let stockPriceRef = ref(database, 'stocks/' + stockValue + '/Price'); // Adjusted path to stock price
+                            set(stockPriceRef, newPriceVal).then(() => { // Update only the price value
+                                alert("Stock Price Updated Successfully");
+                                reset();
+                            }).catch((error) => {
+                                console.error("Error updating stock price: ", error);
+                                alert("Failed to update stock price. Please try again later.");
+                            });
+                        } else {
                             alert("Access Denied");
                         }
                     }
                 });
-            }else{
-                window.location.href ="login.html"
-            }
+        
 
                 
             
