@@ -349,6 +349,25 @@
                         }
                     });
                 }
+                updateQty.addEventListener('click', () => {
+                    let stockValue = stockDD.value;
+                    if (stockValue === 'Select Stock') {
+                        alert("All Fields Not Selected");
+                    } else {
+                        let passcode = prompt("Please Enter Access Code");
+                        if (passcode === "shittu") {
+                            let quantityEntered = parseFloat(newQty.value) || 0;
+                            let priceEntered = parseFloat(newPrice.value) || 0;
+                            
+                            updatePrices(stockValue, quantityEntered, priceEntered);
+                            
+                            reset();
+                        } else {
+                            alert("Access Denied");
+                        }
+                    }
+                });
+                
             }else{
                 window.location.href ="login.html"
             }
