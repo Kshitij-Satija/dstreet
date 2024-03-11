@@ -314,7 +314,7 @@
 
 
                 
-                // Function to update price and last_price in the database as per the formula
+ // Function to update price and last_price in the database as per the formula
 function updatePriceAndLastPrice(stockName, qtyEntered, price) {
     let stockRef = ref(database, 'stocks/' + stockName);
     return new Promise((resolve, reject) => {
@@ -327,7 +327,7 @@ function updatePriceAndLastPrice(stockName, qtyEntered, price) {
             set(lastPriceRef, lastPrice).then(() => {
 
                 // Calculate the new price based on the formula
-                const volume = stockData.iss_volume; // Corrected to use iss_volume
+                const volume = stockData.iss_volume;
                 let newPrice = lastPrice + (qtyEntered / volume) * (price - lastPrice);
 
                 // Update the price with the new calculated price
@@ -345,6 +345,7 @@ function updatePriceAndLastPrice(stockName, qtyEntered, price) {
         });
     });
 }
+
 
 // Fetch the price and update price and last_price in the database
 updateQty.addEventListener('click', () => {
